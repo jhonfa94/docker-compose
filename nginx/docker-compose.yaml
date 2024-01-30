@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  nginx:
+    # 172.23.0.3
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - MIARGUMENTO="Soy un argumento desde docker compose"
+    # image: nginx:alpine
+    # command: ["echo", "Mensaje creado desde el docker-compose"]
+    container_name: nginx_alpine
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./html/:/usr/share/nginx/html
+    networks:
+      nginx_network:
+        aliases:
+          - nginx_host
+
+  nginx2:
+    # 172.23.0.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - MIARGUMENTO="Soy un argumento desde docker compose"
+    # image: nginx:alpine
+    # command: ["echo", "Mensaje creado desde el docker-compose"]
+    container_name: nginx_alpine_2
+    restart: always
+    ports:
+      - 8180:80
+    volumes:
+      - ./html2/:/usr/share/nginx/html
+    networks:
+      nginx_network:
+        aliases:
+          - nginx2_host
+
+volumes:
+  html: {}
+  html2: {}
+
+networks:
+  nginx_network:
+    name: nginx_net
+    driver: bridge
+    ipam:
+      driver: default
