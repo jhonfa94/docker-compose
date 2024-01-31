@@ -3,3 +3,5 @@
 # CARPETA DE LA DATA DE MARIADB
 php/schemas
 
+**/schemas/
+

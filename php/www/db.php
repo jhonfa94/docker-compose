@@ -7,11 +7,6 @@ class Conexion
     public static $password = "Custom.2020";
     public static $db = "custom_db";
 
-
-
-    /* ===================== 
-	  CONEXION A LA DB CRM 
-	========================= */
     static public function conectar()
     {
         $link = null;
